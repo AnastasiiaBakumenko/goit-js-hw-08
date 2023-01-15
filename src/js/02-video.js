@@ -1,3 +1,4 @@
+import Player from '@vimeo/player';
 import throttle from 'lodash.throttle';
 
 const iframe = document.querySelector('iframe');
@@ -9,4 +10,12 @@ function onPlay({ seconds }) {
   localStorage.setItem('videoplayer-current-time', seconds);
 }
 
-player.setCurrentTime(localStorage.getItem('videoplayer-current-time'));
+player.setCurrentTime(localStorage.getItem('videoplayer-current-time'))
+.catch(function(error) {
+  switch (error.name) {
+      case 'RangeError':
+          break;
+      default:
+          break;
+  }
+});
